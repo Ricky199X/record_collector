@@ -1,6 +1,6 @@
 class UserAlbum < ApplicationRecord
 
-   belongs_to :album
-   belongs_to :show
+   belongs_to :artist
+   belongs_to :user
 
 end

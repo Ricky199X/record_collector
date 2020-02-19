@@ -6,6 +6,7 @@ class CreateAlbums < ActiveRecord::Migration[6.0]
       t.string :label
       t.string :cover_url
       t.integer :popularity
+      t.integer :artist_id
 
       t.timestamps
     end
