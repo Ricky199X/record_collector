@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_121238) do
 
   create_table "user_albums", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "album_id"
     t.integer "artist_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

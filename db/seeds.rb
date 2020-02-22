@@ -14,4 +14,4 @@ album = Album.create(name: 'Aquemini', release_date: '1998-09-29', label: 'LaFac
 
 song = Song.create(name: 'Aquemini', duration_ms: 100000, preview_url: 'www.preview.com', album_id: 1, artist_id: 1)
 
-user_album = UserAlbum.create(user_id: 1, artist_id: 1)
+user_album = UserAlbum.create(user_id: 1, album_id: 1, artist_id: 1)
