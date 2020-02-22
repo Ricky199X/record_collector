@@ -22,4 +22,15 @@ class ApplicationController < ActionController::API
          ]
       }, status: :bad_request
    end
+
+
+   def unauthorized_error
+      render json: { message: 'You are not authorized to make that request!' }, status: 401
+   end
+
+   def not_found
+      render json: { message: 'Resource not found'}, status: 404
+   end
+
+   
 end
