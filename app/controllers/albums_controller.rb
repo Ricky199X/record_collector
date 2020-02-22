@@ -1,2 +1,5 @@
 class AlbumsController < ApplicationController
+
+
+
 end

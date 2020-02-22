@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
    def index
-      render :json { message: 'welcome home'}
+      render json: { message: 'welcome home'}
    end
 
 
