@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_121238) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
-    t.date "release_date"
+    t.string "release_date"
     t.string "label"
     t.string "cover_url"
     t.integer "popularity"
