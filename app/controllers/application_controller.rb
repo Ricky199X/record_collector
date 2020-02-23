@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 
-    def render_resource(resource, with: nil)
+    def render_resource(resource)
         if resource.errors.empty?
           render json: resource, include: with
         else
