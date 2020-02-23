@@ -12,5 +12,11 @@ class SongsController < ApplicationController
       song = Song.find(params[:id])
       render_resource(song)
    end
-   
+
+   private 
+
+   def song_params
+      params.require(:album).permit(:name, :duration_ms, :preview_url, :album_id, :artist_id)
+   end
+
 end
