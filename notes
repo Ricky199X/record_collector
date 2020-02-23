@@ -6,6 +6,12 @@ IMMEDIATE TO-DOS
 3. Need to SUCCESFFULLY BLACKLIST THE JSON WEB TOKEN
 4. Set up serializer
 
+- AlbumSerializer - DONE 
+- ArtistSerializer - DONE
+- SongSerializer - DONE
+- UserSerializer - DONE
+- UserAlbumSerializer - DONE
+
 
 
 Completed Tasks:

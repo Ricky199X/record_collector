@@ -4,13 +4,13 @@ class AlbumsController < ApplicationController
 
    def index
       albums = Album.all
-      render json: albums
+      render json: AlbumSerializer.new(albums)
    end
 
 
    def show
       album = Album.find(params[:id])
-      render json: album.to_json(include: [:songs])
+      render json: AlbumSerializer.new(album)
    end
 
    def create
