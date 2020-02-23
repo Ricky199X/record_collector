@@ -12,7 +12,9 @@ RSpec.describe 'POST /login', type: :request do
             password: user.password
          }
       }
+      
    end
+   # byebug
 
    context 'when params are correct' do
       before do
@@ -62,7 +64,7 @@ RSpec.describe 'DELETE /logout', type: :request do
          user: {
             username: user.username,
             email: user.email,
-            password: user.password
+            # password: user.password
          }
       }
    end
@@ -80,4 +82,6 @@ RSpec.describe 'DELETE /logout', type: :request do
       get protected_url, headers: { Authorization: "Bearer #{token}"}
       expect(response).to have_http_status(401)
    end 
+
+   # byebug
 end

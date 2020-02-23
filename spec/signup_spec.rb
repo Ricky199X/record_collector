@@ -5,9 +5,10 @@ RSpec.describe 'POST /signup', type: :request do
   let(:params) do
     {
       user: {
-        username: 'user12',
-        password: 'password',
-        email: 'email'
+        username: '',
+        email: '',
+        password: ''
+        
       }
     }
   end
@@ -41,9 +42,9 @@ RSpec.describe 'POST /signup', type: :request do
       expect(response.status).to eq 400
     end
 
-   #  it 'returns validation errors' do
-   #    json = JSON.parse(response.body)
-   #    expect(json['errors'].first['title']).to eq('Bad Request')
-   #  end
+    # it 'returns validation errors' do
+    #   json = JSON.parse(response.body)
+    #   expect(json['errors'].first['title']).to eq('Bad Request')
+    # end
   end
 end
