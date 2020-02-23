@@ -1,17 +1,20 @@
 class UserAlbumsController < ApplicationController
 
-   # before_action :authenticate_user!
+   before_action :authenticate_user!
 
    def index
       albums = current_user.albums
-      render json: albums.to_json(include: [:songs])
+      render json: AlbumSerializer.new(albums)
    end
 
 
    def show
       album = Album.find(params[:id])
       authorize_user_resource(album)
-      render_resource(album, with: [:songs])
+      options = {
+         include: [:album]
+      }
+      render json: AlbumSerializer.new(album, options)
    end
 
 

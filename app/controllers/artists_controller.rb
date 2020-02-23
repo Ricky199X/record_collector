@@ -1,7 +1,7 @@
 class ArtistsController < ApplicationController
 
    # authenticate to make sure a valid user is able to access the resources
-   # before_action :authenticate_user!
+   before_action :authenticate_user!
 
    # show all artists
    def index 
@@ -13,7 +13,7 @@ class ArtistsController < ApplicationController
    # show individual artist + their catalogue
    def show
       artist = Artist.find(params[:id])
-      # authorize_user_resource(artist)
+      authorize_user_resource(artist)
 
       options = {
          include: [:albums, :users]

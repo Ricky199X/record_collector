@@ -2,7 +2,7 @@ class SongsController < ApplicationController
 
    # NOTE: Not Really using this controller: songs are mostly a nested resource for an album
 
-   # before_action :authenticate_user!
+   before_action :authenticate_user!
 
    def index
       if params[:album_id]

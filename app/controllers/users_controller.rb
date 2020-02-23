@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-   # before_action :authenticate_user!
+   before_action :authenticate_user!
 
    def index
       users = User.all
@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
    def show
       user = User.find(params[:id])
-      # render_resource(user)
       render json: UserSerializer.new(user)
    end
 

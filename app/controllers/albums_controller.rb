@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
 
-   # before_action :authenticate_user!
+   before_action :authenticate_user!
 
    def index
       albums = Album.all
@@ -10,7 +10,6 @@ class AlbumsController < ApplicationController
 
    def show
       album = Album.find(params[:id])
-      # authorize_user_resource(album)
 
       options = {
          include: [:artist, :songs]
