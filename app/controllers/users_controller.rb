@@ -7,6 +7,12 @@ class UsersController < ApplicationController
       render json: { message: users }
    end
 
+   def show
+      user = User.find(params[:id])
+      render_resource(user)
+      render json: { message: user }
+   end
+
 
    private
 
