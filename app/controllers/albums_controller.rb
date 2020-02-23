@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
 
-   # before_action :authenticate_user!
+   before_action :authenticate_user!
 
    def index
       albums = Album.all
