@@ -1,12 +1,19 @@
 class SongsController < ApplicationController
 
-   # NOTE: THIS CONTROLLER IS MEANT TO BE 
+   # NOTE: Not Really using this controller: songs are mostly a nested resource for an album
 
    # before_action :authenticate_user!
 
    def index
-      songs = songs.all
-      render json: SongSerializer.new(songs)
+      if params[:album_id]
+         album = Album.find(params[:album_id])
+         
+         songs = Album.find(params[:album_id]).songs
+         render json: SongSerializer.new(songs)
+      else 
+         songs = Song.all
+         render json: SongSerializer.new(songs)
+      end
    end
 
    def show
