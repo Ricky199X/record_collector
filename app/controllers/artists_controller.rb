@@ -16,7 +16,7 @@ class ArtistsController < ApplicationController
       # authorize_user_resource(artist)
 
       options = {
-         include: [:albums]
+         include: [:albums, :users]
       }
       render json: ArtistSerializer.new(artist, options)
    end

@@ -10,7 +10,12 @@ class AlbumsController < ApplicationController
 
    def show
       album = Album.find(params[:id])
-      render json: AlbumSerializer.new(album)
+      # authorize_user_resource(album)
+
+      options = {
+         include: [:artist, :songs]
+      }
+      render json: AlbumSerializer.new(album, options)
    end
 
    def create
