@@ -4,13 +4,13 @@ class UsersController < ApplicationController
 
    def index
       users = User.all
-      render json: { message: users }
+      render json: UserSerializer.new(users)
    end
 
    def show
       user = User.find(params[:id])
-      render_resource(user)
-      render json: { message: user }
+      # render_resource(user)
+      render json: UserSerializer.new(user)
    end
 
 

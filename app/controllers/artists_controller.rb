@@ -6,15 +6,19 @@ class ArtistsController < ApplicationController
    # show all artists
    def index 
       artists = Artist.all
-      render json: { message: artists }
+      render json: ArtistSerializer.new(artists)
    end
 
 
    # show individual artist + their catalogue
    def show
       artist = Artist.find(params[:id])
-      authorize_user_resource(artist)
-      render_resource(artist, with: [:artist][:albums])
+      # authorize_user_resource(artist)
+
+      options = {
+         include: [:albums]
+      }
+      render json: ArtistSerializer.new(artist, options)
    end
 
 
