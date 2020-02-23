@@ -34,8 +34,6 @@ context 'you must be authorized to perform any crud on albums' do
     expect(response.status).to eq 401
     post '/albums', params: { album: {name: 'album', release_date: '01/01/1990', label: 'something records', cover_url: 'www.image.com', popularity: (0..100), artist_id: (0..100)}} 
     expect(response.status).to eq 401
-    delete '/albums/1'
-    expect(response.status).to eq 401
   end
 
 end

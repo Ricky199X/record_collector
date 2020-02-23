@@ -13,6 +13,12 @@ class AlbumsController < ApplicationController
       render json: album.to_json(include: [:songs])
    end
 
+   def create
+      album = Album.new(album_params)
+      album.save
+      render_resource(album)
+   end
+
 
    private 
 
