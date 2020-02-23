@@ -13,8 +13,8 @@ class ArtistsController < ApplicationController
    # show individual artist + their catalogue
    def show
       artist = Artist.find(params[:id])
-      authorize_user_resource(album)
-      render_resource(artists, with: [:albums])
+      authorize_user_resource(artist)
+      render_resource(artist, with: [:artist][:albums])
    end
 
 
