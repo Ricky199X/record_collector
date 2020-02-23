@@ -1,16 +1,17 @@
 class SongsController < ApplicationController
 
+   # NOTE: THIS CONTROLLER IS MEANT TO BE 
+
    # before_action :authenticate_user!
 
    def index
-      albums = current_user.albums
-      songs = albums.songs
-      render_resource(songs)
+      songs = songs.all
+      render json: SongSerializer.new(songs)
    end
 
    def show
       song = Song.find(params[:id])
-      render_resource(song)
+      render json: SongSerializer.new(song)
    end
 
    private 
