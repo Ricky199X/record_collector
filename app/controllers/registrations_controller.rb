@@ -4,13 +4,23 @@ class RegistrationsController < Devise::RegistrationsController
 
    def create
 
-      begin
-         super
-      rescue ActiveRecord::RecordInvalid => e
-         render_resource(e.record)
-      rescue ActiveRecord::RecordNotUnique => e
-         err = OpenStruct.new(errors: { user: 'Already exists!' } )
-         validation_error(err)
+      # begin
+      #    super
+      # rescue ActiveRecord::RecordInvalid => e
+      #    render_resource(e.record)
+      # rescue ActiveRecord::RecordNotUnique => e
+      #    err = OpenStruct.new(errors: { user: 'Already exists!' } )
+      #    validation_error(err)
+      # end
+
+      def create
+         binding.pry
+         user = User.new(user_params)
+         if user.save
+            render json: UserSerializer.new(user)
+         else 
+            render json: {error: 'Error creating user!'}
+         end
       end
 
    end
@@ -26,4 +36,7 @@ class RegistrationsController < Devise::RegistrationsController
    end
 
 
+   def user_params
+      params.require(:user).permit(:username, :email, :password)
+   end
 end

@@ -47,3 +47,5 @@ gem 'dry-configurable', '0.9.0'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'fast_jsonapi'
+
+gem 'pry'
