@@ -36,6 +36,19 @@ class ApplicationController < ActionController::API
         render json: { message: 'Resource not found' }, status: 404
     end
 
+    def log_in(user)
+        session[:user_id] = user.id
+    end
+
+    def logged_in
+        !!current_user
+    end
+
+    # Determines who the current user is by searching for the account_id currently in the sessions hash
+    def current_user
+        current_user = User.find_by(id: session[:user_id])
+    end
+
     protected 
 
     def configure_permitted_parameters
