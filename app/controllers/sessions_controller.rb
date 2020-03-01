@@ -7,7 +7,8 @@ class SessionsController < Devise::SessionsController
 
     # def create
     #     user = User.find_by(email: params[:email])
-    #     if !
+        
+
 
     # end
 

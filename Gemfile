@@ -50,3 +50,4 @@ gem 'fast_jsonapi'
 
 gem 'pry'
 gem 'rspotify'
+gem 'jwt'

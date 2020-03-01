@@ -262,6 +262,7 @@ DEPENDENCIES
   fabrication
   faker
   fast_jsonapi
+  jwt
   listen (>= 3.0.5, < 3.2)
   pry
   puma (~> 4.1)
