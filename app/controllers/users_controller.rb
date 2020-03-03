@@ -10,16 +10,27 @@ class UsersController < ApplicationController
    def create
       user = User.new(user_params)
       if user.save
+         login!
          render json: UserSerializer.new(user)
       else 
-         render json: {error: 'Error creating user!'}
+         render json: {
+            status: 500,
+            error: ['Error creating user!']
+         }
       end
    end
   
 
    def show
       user = User.find(params[:id])
-      render json: UserSerializer.new(user)
+      if user 
+         render json: UserSerializer.new(user)
+      else 
+         render json: {
+            status: 500,
+            error: ['user not found']
+         }
+      end
    end
 
 

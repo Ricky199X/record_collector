@@ -8,7 +8,7 @@ class SessionsController < Devise::SessionsController
    def create
       user = User.find_by(email: params[:email])
       if !user.nil && user.authenticate(params[:password])
-         log_in(user)
+         login!
          render json: { message: 'welcome back!'}
       else 
          render json: { message: 'Improper credentials given!'}
