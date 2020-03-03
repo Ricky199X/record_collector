@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create(email: 'ricky@ricky.com', password: 'password', username: 'username')
+user = User.create(username: 'username', email: 'ricky@ricky.com', password: 'password')
 
 artist = Artist.create(name: 'OutKast', genre: 'Rap', photo_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/OutKast_2001.jpg/800px-OutKast_2001.jpg')
 
