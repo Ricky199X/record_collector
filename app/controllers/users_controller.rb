@@ -3,16 +3,17 @@ class UsersController < ApplicationController
    # before_action :authenticate_user!
 
    def index
-      users = User.all
-      render json: UserSerializer.new(users)
+      @users = User.all
+      render json: UserSerializer.new(@users)
    end
 
    def create
-      # binding.pry
-      user = User.new(user_params)
-      if user.save
+      
+      @user = User.create(user_params)
+      if @user
          login!
-         render json: UserSerializer.new(user)
+         binding.pry
+         render json: UserSerializer.new(@user)
       else 
          render json: {
             status: 500,
@@ -23,9 +24,9 @@ class UsersController < ApplicationController
   
 
    def show
-      user = User.find(params[:id])
-      if user 
-         render json: UserSerializer.new(user)
+      @user = User.find(params[:id])
+      if @user 
+         render json: UserSerializer.new(@user)
       else 
          render json: {
             status: 500,

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
 
     def login!
-        session[:user_id] = user.id
+        session[:user_id] = @user.id
     end
 
     def logged_in?
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     end
 
     def authorized_user?
-        user == current_user
+        @user == current_user
     end
 
     def logout!
