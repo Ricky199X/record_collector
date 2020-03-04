@@ -37,5 +37,9 @@ module DogWalkerBackend
     config.dispatch_requests = [
       ['POST', %r{^/sign_in$}, %r{^/login$} ]
     ]
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    
   end
 end

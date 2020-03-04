@@ -6,12 +6,12 @@ class SessionsController < ApplicationController
    end
 
    def create
-      user = User.find_by(email: params[:email])
-      if !user.nil && user.authenticate(params[:password])
+      @user = User.find_by(email: params[:email])
+      if !@user.nil && @user.authenticate(params[:password])
          login!
          render json: { 
             logged_in: true,
-            user: user
+            user: @user
             message: 'welcome back!'
          }
       else 
