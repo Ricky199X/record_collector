@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
          login!
          render json: { 
             logged_in: true,
-            user: @user
+            user: @user,
             message: 'welcome back!'
          }
       else 

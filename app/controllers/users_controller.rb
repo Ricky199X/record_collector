@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       @user = User.create(user_params)
       if @user
          login!
-         binding.pry
+         # binding.pry
          render json: UserSerializer.new(@user)
       else 
          render json: {
