@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
    def index
       @users = User.all
-      render json: UserSerializer.new(@users)
+      render json: UserSerializer.new(@users), status: 200
    end
 
    def create
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       if @user
          login!
          # binding.pry
-         render json: UserSerializer.new(@user)
+         render json: UserSerializer.new(@user), status: 200
       else 
          render json: {
             status: 500,
