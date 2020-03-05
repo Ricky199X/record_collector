@@ -8,19 +8,20 @@ class SessionsController < ApplicationController
    def create
       @user = User.find_by(email: params[:email])
       if !@user.nil && @user.authenticate(params[:password])
-         login!
-         render json: { 
-            logged_in: true,
-            user: @user,
-            message: 'welcome back!'
-         }
+         session[:user_id] = @user.id
+         cookies["logged_in"] = true
+         render json: @user
       else 
          render json: { 
             status: 401,
             message: 'Improper credentials given!'
          }
-         # need to figure out what to do about the redirect here
       end
+   end
+
+   def auth_check 
+      cookies["logged_in "] = is_logged_in?
+      render json: {crsf_auth_token: form_authenticity_token}
    end
 
    def is_logged_in?
