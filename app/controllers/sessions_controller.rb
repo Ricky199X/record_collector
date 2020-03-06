@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 
    def create
       @user = User.find_by(email: params[:email])
+      binding.pry
       if !@user.nil && @user.authenticate(params[:password])
          session[:user_id] = @user.id
          cookies["logged_in"] = true
