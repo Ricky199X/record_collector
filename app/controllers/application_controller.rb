@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
         @user == current_user
     end
 
+    def authenticate
+        raise AppError::AuthenticationError if !logged_in?
+    end
+
     def logout!
         session.clear
     end

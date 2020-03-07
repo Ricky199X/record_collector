@@ -1,52 +1,29 @@
 class SessionsController < ApplicationController
-   respond_to :json
 
 
-   def new
+   def login
+       user = User.find_by(email: params[:user][:email])
+      #  binding.pry
+       if user && user.authenticate(params[:user][:password])
+           session[:user_id] = user.id
+           cookies["logged_in"] = true
+           render json: user
+       else
+           render json: { error: "Invalid Authentication"}, status: 401
+       end
+
    end
 
-   def create
-      @user = User.find_by(email: params[:email])
-      binding.pry
-      if !@user.nil && @user.authenticate(params[:password])
-         session[:user_id] = @user.id
-         cookies["logged_in"] = true
-         render json: @user
-      else 
-         render json: { 
-            status: 401,
-            message: 'Improper credentials given!'
-         }
-      end
+   def auth_check
+       cookies["logged_in"] = logged_in?
+       render json: {csrf_auth_token: form_authenticity_token}
    end
 
-   def auth_check 
-      cookies["logged_in "] = is_logged_in?
-      render json: {crsf_auth_token: form_authenticity_token}
+
+
+   def logout
+       authenticate
+       session.clear
    end
-
-   def is_logged_in?
-      if logged_in? && current_user
-        render json: {
-          logged_in: true,
-          user: current_user
-        }
-      else
-        render json: {
-          logged_in: false,
-          message: 'no such user'
-        }
-      end
-   end
-
-   def destroy
-      logout!
-      render json: {
-        status: 200,
-        logged_out: true
-      }
-   end
-
-   private
-
+   
 end
