@@ -3,27 +3,46 @@ class UserAlbumsController < ApplicationController
    # before_action :authenticate_user!
 
    def index
-      albums = current_user.albums
-      render json: AlbumSerializer.new(albums)
+      # user = User.find(params[:user_id])
+      # albums = user.albums
+      # binding.pry
+      # render json: UserAlbumSerializer.new(albums)
+
+      if params[:user_id]
+         user_albums = User.find(params[:user_id]).user_albums
+         render json: UserAlbumSerializer.new(user_albums)
+      else 
+         user_albums = UserAlbum.all
+         render json: UserAlbumSerializer.new(user_albums)
+      end
    end
 
 
    def show
-      album = Album.find(params[:id])
-      authorize_user_resource(album)
-      options = {
-         include: [:album]
-      }
-      render json: AlbumSerializer.new(album, options)
+      # if authorized_user?
+         user_album = UserAlbum.find(params[:id])
+         options = {
+            include: [:album]
+         }
+         render json: UserAlbumSerializer.new(user_album, options)
+      # else
+      #    render json: { message: "You are not authorized to view this content!"}, status: 400
+      # end
    end
 
 
-   def create
-      album = Album.new(album_params)
-      album.user = current_user
-      album.save
-      render_resource(album)
+   def create 
+      current_user = User.find(params[:user_id])
+      user_album = UserAlbum.new(user: current_user, album: Album.find(params[:album][:id]))
+      user_album.save
+      current_user.albums << user_album
+      if user_album
+         render json: UserAlbumSerializer.new(user_album)
+      else 
+         render json: { message: 'oops!' }, status: 400
+      end
    end
+  
 
 
    def destroy
@@ -35,9 +54,9 @@ class UserAlbumsController < ApplicationController
 
    private 
 
-   def album_params
-      params.require(:album).permit(:name, :release_date, :label, :cover_url, :popularity, :artist_id)
-   end
+   # def user_album_params
+   #    params.require(:user_album).permit(:user_id, :album_id)
+   # end
    
 
 end

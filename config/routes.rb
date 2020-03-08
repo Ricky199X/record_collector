@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   end
 
   resources :users do 
-    resources :albums, only: [:index, :show]
+    resources :user_albums
   end
+
+  # resources :user_albums
 
   resources :sessions
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
