@@ -30,12 +30,14 @@ class UserAlbumsController < ApplicationController
       # end
    end
 
+   # params[:album][:attributes][:artist_id]
 
    def create 
       current_user = User.find(params[:user_id])
-      user_album = UserAlbum.new(user: current_user, album: Album.find(params[:album][:id]))
+      user_album = UserAlbum.new(user: current_user, album: Album.find(params[:album][:id]), artist: Artist.find(params[:album][:attributes][:artist_id]))
       user_album.save
-      current_user.albums << user_album
+      binding.pry
+      # current_user.albums << user_album
       if user_album
          render json: UserAlbumSerializer.new(user_album)
       else 
