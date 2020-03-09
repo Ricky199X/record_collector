@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :users do 
+    resources :albums do
     resources :user_albums
+    end
   end
 
   # resources :user_albums
