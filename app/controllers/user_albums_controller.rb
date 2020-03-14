@@ -20,6 +20,7 @@ class UserAlbumsController < ApplicationController
 
    def show
       # if authorized_user?
+         
          user_album = UserAlbum.find(params[:id])
          options = {
             include: [:album]
@@ -36,8 +37,6 @@ class UserAlbumsController < ApplicationController
       current_user = User.find(params[:user_id])
       user_album = UserAlbum.new(user: current_user, album: Album.find(params[:album][:id]), artist: Artist.find(params[:album][:attributes][:artist_id]))
       user_album.save
-      binding.pry
-      # current_user.albums << user_album
       if user_album
          render json: UserAlbumSerializer.new(user_album)
       else 

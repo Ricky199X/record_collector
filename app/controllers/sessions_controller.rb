@@ -14,6 +14,17 @@ class SessionsController < ApplicationController
 
    end
 
+    def getUser 
+        current_user = User.find_by(id: session[:user_id])
+        # binding.pry
+        if current_user 
+            # binding.pry
+            render json: current_user
+        else
+            render json: { error: "Invalid Authentication"}, status: 401
+        end
+    end
+
    def auth_check
        cookies["logged_in"] = logged_in?
        render json: {csrf_auth_token: form_authenticity_token}
