@@ -10,8 +10,6 @@ class UsersController < ApplicationController
    def create
       @user = User.create(user_params)
       if @user
-         # login!
-         # binding.pry
          render json: UserSerializer.new(@user), status: 200
       else 
          render json: {

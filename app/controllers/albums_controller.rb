@@ -20,11 +20,6 @@ class AlbumsController < ApplicationController
    def create
       album = Album.new(album_params)
       album.save
-
-      # # if logged_in?
-      # user = User.find(params[:user_id])
-      # # user.albums << album
-         
       render json: AlbumSerializer.new(album)
    end
 

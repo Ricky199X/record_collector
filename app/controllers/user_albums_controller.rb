@@ -19,8 +19,7 @@ class UserAlbumsController < ApplicationController
 
 
    def show
-      # if authorized_user?
-         
+      current_user = User.find(params[:user_id])
          user_album = UserAlbum.find(params[:id])
          options = {
             include: [:album]
@@ -30,8 +29,6 @@ class UserAlbumsController < ApplicationController
       #    render json: { message: "You are not authorized to view this content!"}, status: 400
       # end
    end
-
-   # params[:album][:attributes][:artist_id]
 
    def create 
       current_user = User.find(params[:user_id])
