@@ -6,6 +6,7 @@ class SongsController < ApplicationController
 
    def index
       if params[:album_id]
+         # binding.pry
          album = Album.find(params[:album_id])
          
          songs = Album.find(params[:album_id]).songs
@@ -18,6 +19,7 @@ class SongsController < ApplicationController
 
    def show
       song = Song.find(params[:id])
+      # binding.pry
       render json: SongSerializer.new(song)
    end
 

@@ -9,7 +9,9 @@ class UserAlbumsController < ApplicationController
       # render json: UserAlbumSerializer.new(albums)
 
       if params[:user_id]
+         # binding.pry
          user_albums = User.find(params[:user_id]).user_albums
+         # binding.pry
          render json: UserAlbumSerializer.new(user_albums)
       else 
          user_albums = UserAlbum.all
@@ -20,6 +22,7 @@ class UserAlbumsController < ApplicationController
 
    def show
       current_user = User.find(params[:user_id])
+      # binding.pry
          user_album = UserAlbum.find(params[:id])
          options = {
             include: [:album]

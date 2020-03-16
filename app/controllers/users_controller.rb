@@ -4,11 +4,13 @@ class UsersController < ApplicationController
 
    def index
       @users = User.all
+      # binding.pry
       render json: UserSerializer.new(@users), status: 200
    end
 
    def create
       @user = User.create(user_params)
+      # binding.pry
       if @user
          render json: UserSerializer.new(@user), status: 200
       else 
@@ -22,6 +24,7 @@ class UsersController < ApplicationController
 
    def show
       @user = User.find(params[:id])
+      # binding.pry
       if @user 
          render json: UserSerializer.new(@user)
       else 
