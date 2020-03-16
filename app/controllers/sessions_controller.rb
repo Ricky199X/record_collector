@@ -32,9 +32,8 @@ class SessionsController < ApplicationController
 
 
 
-#    def logout
-#        authenticate
-#        session.clear
-#    end
+    def logout
+        session.clear
+    end
    
 end
