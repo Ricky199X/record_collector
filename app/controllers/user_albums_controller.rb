@@ -4,14 +4,11 @@ class UserAlbumsController < ApplicationController
 
    def index
       if params[:user_id]
-         user = User.find_by(params[:user_id])
-         require_authorized_user(user)
+         user = User.find(params[:user_id])
+         # require_auth(user)
          user_albums = user.albums
          binding.pry
          render json: user_albums
-      else 
-         albums = Album.all
-         render json: AlbumSerializer.new(albums)
       end
    end
 
