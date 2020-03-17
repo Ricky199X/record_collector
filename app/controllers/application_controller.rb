@@ -19,11 +19,11 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-        User.find_by(id: session[:user_id])
+        current_user = User.find_by(id: session[:user_id])
     end
 
     def authorized_user?
-        @user == current_user
+        user == current_user
     end
 
     def authenticate
@@ -32,6 +32,14 @@ class ApplicationController < ActionController::Base
 
     def logout!
         session.clear
+    end
+
+    def require_auth(user)
+        return head(:forbidden) unless current_user == user.id
+    end
+ 
+    def require_authorized_user(obj)
+        require_auth(obj)
     end
 
 end

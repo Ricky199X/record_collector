@@ -1,27 +1,23 @@
 class UserAlbumsController < ApplicationController
 
-   # before_action :authenticate_user!
+   # before_action :authenticate
 
    def index
-      # user = User.find(params[:user_id])
-      # albums = user.albums
-      # binding.pry
-      # render json: UserAlbumSerializer.new(albums)
-
       if params[:user_id]
+         user = User.find_by(params[:user_id])
+         require_authorized_user(user)
+         user_albums = user.albums
          # binding.pry
-         user_albums = User.find(params[:user_id]).user_albums
-         # binding.pry
-         render json: UserAlbumSerializer.new(user_albums)
+         render json: user_albums
       else 
-         user_albums = UserAlbum.all
-         render json: UserAlbumSerializer.new(user_albums)
+         albums = Album.all
+         render json: AlbumSerializer.new(albums)
       end
    end
 
 
    def show
-      current_user = User.find(params[:user_id])
+      user = User.find(params[:user_id])
       # binding.pry
          user_album = UserAlbum.find(params[:id])
          options = {

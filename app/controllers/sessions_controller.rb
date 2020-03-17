@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
 
 
     def logout
-        session.clear
+    session.clear
     end
    
 end
