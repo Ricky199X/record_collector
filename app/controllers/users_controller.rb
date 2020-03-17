@@ -22,8 +22,6 @@ class UsersController < ApplicationController
 
    def show
       user = User.find(params[:id])
-      # binding.pry
-      # require_authorized_user(user)
       if user 
          render json: UserSerializer.new(user)
       else 

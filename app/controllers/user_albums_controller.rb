@@ -7,7 +7,7 @@ class UserAlbumsController < ApplicationController
          user = User.find(params[:user_id])
          # require_auth(user)
          user_albums = user.albums
-         binding.pry
+         # binding.pry
          render json: user_albums
       end
    end
