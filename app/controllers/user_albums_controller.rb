@@ -13,28 +13,29 @@ class UserAlbumsController < ApplicationController
    end
 
 
-   # def show
-   #    user = User.find(params[:user_id])
-   #    require_authorized_user(user)
-   #       user_album = UserAlbum.find(params[:id])
-   #       options = {
-   #          include: [:album]
-   #       }
-   #       render json: UserAlbumSerializer.new(user_album, options)
-   #    # else
-   #    #    render json: { message: "You are not authorized to view this content!"}, status: 400
-   #    # end
-   # end
+   def show
+      current_user = User.find(params[:user_id])
+      if current_user
+         user_album = UserAlbum.find(params[:id])
+         options = {
+            include: [:album]
+         }
+         render json: UserAlbumSerializer.new(user_album, options)
+      else
+         render json: { message: "You are not authorized to view this content!"}, status: 400
+      end
+   end
 
    def create 
       current_user = User.find(params[:user_id])
-      require_authorized_user(user)
-      user_album = UserAlbum.new(user: current_user, album: Album.find(params[:album][:id]), artist: Artist.find(params[:album][:attributes][:artist_id]))
-      user_album.save
-      if user_album
-         render json: UserAlbumSerializer.new(user_album)
-      else 
-         render json: { message: 'oops!' }, status: 400
+      if current_user
+         user_album = UserAlbum.new(user: current_user, album: Album.find(params[:album][:id]), artist: Artist.find(params[:album][:attributes][:artist_id]))
+         user_album.save
+         if user_album
+            render json: UserAlbumSerializer.new(user_album)
+         else 
+            render json: { message: 'oops!' }, status: 400
+         end
       end
    end
   

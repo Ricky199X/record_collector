@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
 
     def getUser 
         user = User.find_by(id: session[:user_id])
+        # binding.pry
         if user && logged_in?
             render json: user
         else
