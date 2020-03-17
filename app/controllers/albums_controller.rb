@@ -4,14 +4,12 @@ class AlbumsController < ApplicationController
 
    def index
       albums = Album.all
-      # binding.pry
       render json: AlbumSerializer.new(albums)
    end
 
 
    def show
       album = Album.find(params[:id])
-      # binding.pry
       options = {
          include: [:artist, :songs]
       }
@@ -20,7 +18,6 @@ class AlbumsController < ApplicationController
 
    def create
       album = Album.new(album_params)
-      # binding.pry
       album.save
       render json: AlbumSerializer.new(album)
    end
