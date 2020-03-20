@@ -18,7 +18,7 @@ class UserAlbumsController < ApplicationController
       if current_user
          user_album = UserAlbum.find(params[:id])
          options = {
-            include: [:album]
+            include: [:album, :artist, :songs]
          }
          render json: UserAlbumSerializer.new(user_album, options)
       else
@@ -41,12 +41,14 @@ class UserAlbumsController < ApplicationController
   
 
 
-   # def destroy
-   #    album = Album.find(params[:id])
-   #    require_authorized_user(user)
-   #    album.destroy
-   #    render_resource(album)
-   # end
+   def destroy
+      current_user = UserAlbum.find(params[:user_id])
+      if current_user
+         user_album = UserAlbum.find(params[:id])
+         binding.pry
+         user_album.destroy
+      end
+   end
 
    private 
 
