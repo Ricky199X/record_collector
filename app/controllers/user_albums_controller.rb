@@ -41,14 +41,15 @@ class UserAlbumsController < ApplicationController
   
 
 
-   def destroy
-      current_user = UserAlbum.find(params[:user_id])
-      if current_user
-         user_album = UserAlbum.find(params[:id])
-         binding.pry
-         user_album.destroy
-      end
-   end
+   # def destroy
+   #    current_user = User.find(params[:user_id])
+   #    if current_user
+   #       binding.pry
+   #       user_album = current_user.user_albums.find(params[:id] === album_id)
+   #       # binding.pry
+   #       user_album.destroy
+   #    end
+   # end
 
    private 
 
