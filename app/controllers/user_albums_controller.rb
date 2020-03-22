@@ -4,6 +4,7 @@ class UserAlbumsController < ApplicationController
 
    def index
       if params[:user_id]
+         binding.pry
          user = User.find(params[:user_id])
          # require_auth(user)
          user_albums = user.albums
