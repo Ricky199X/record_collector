@@ -9,10 +9,9 @@ class UsersController < ApplicationController
 
    def create
       user = User.new(user_params)
+      user.save
       if user
-         user.save
          login(user)
-         # binding.pry
          render json: UserSerializer.new(user), status: 200
       else 
          render json: {
