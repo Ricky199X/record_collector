@@ -24,7 +24,9 @@ class SessionsController < ApplicationController
 
 
     def logout
-    session.clear
+        session.clear
+        cookies["logged_in"] = logged_in?
+        render json: {message: "Logged Out", status: 200}
     end
    
 end
